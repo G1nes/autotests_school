@@ -4,7 +4,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 cleanWs()
-                git url: 'git@gitlab.flora.ltfs.tools:heathers-repo/qa/e2e-backend-tests.git', branch: "${BRANCH}"
+                git url: 'https://github.com/G1nes/autotests_school.git', branch: "${BRANCH}"
             }
         }
         stage('Build') {
