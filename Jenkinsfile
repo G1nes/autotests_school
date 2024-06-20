@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'docker build -t tests .'
+                sh 'mvn clean install'
             }
         }
         stage('Test') {
@@ -20,6 +20,15 @@ pipeline {
                         docker rm tests || true
                     '''
                     sh 'docker run --name tests'
+                }
+            }
+        }
+        stage('Report') {
+            steps {
+                script {
+                    sh '''
+                        mvn allure:serve
+                    '''
                 }
             }
         }
